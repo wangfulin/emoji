@@ -1,0 +1,9 @@
+.DS_Store
+node_modules
+.vimrc
+.vim
+.bash_profile
+.swp
+build
+dist
+.iml
