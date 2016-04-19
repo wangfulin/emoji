@@ -86,16 +86,24 @@ Emoji.prototype = {
 	setData: function(dataset){
 		this.dataset = dataset;
 	},
+	setPatterns: function(patterns){
+		this.patterns = patterns;
+	},
 	getData: function(){
 		var self = this;
 		var parsedDataset = self.dataset;
 		if(!isSupport(self.isSystemEmoji)){
-			parsedDataset = forEach(self.dataset, self.parse2Img);
-		}
+			var parsedDataset = [];
+			var len = self.dataset.length;
+			for(var i = 0; i < len; i++){
+				parsedDataset.push(self.parse2Img(self.dataset[i]['code']));
+			}
 
+			return parsedDataset;
+		}
 		return parsedDataset;
 	},
-	parse2Code: function(){
+	parse2Code: function(message){
 		var self = this;
 		message = String(message);
 		message = message.replace(self.patterns.namePattern, function(name){
@@ -103,7 +111,7 @@ Emoji.prototype = {
 		});
 		return message;
 	},
-	parse2Img: function(){
+	parse2Img: function(message){
 		var self = this;
 		message = String(message);
 		message = message.replace(self.patterns.codePattern, function(code){
@@ -134,16 +142,6 @@ function getImgName(dataset, code){
 		}
 	}
 	return code;
-}
-
-function forEach(arr, callback){
-	var retArr = [];
-	var len = arr.length;
-	for(var i = 0; i < len; i++){
-		retArr.push(callback(arr[i]));
-	}
-
-	return retArr;
 }
 
 module.exports = Emoji;
