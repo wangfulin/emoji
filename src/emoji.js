@@ -106,7 +106,7 @@ Emoji.prototype = {
 	parse2Code: function(message){
 		var self = this;
 		message = String(message);
-		message = message.replace(self.patterns.namePattern, function(name){
+		message = message.replace(self.patterns.namePattern, function(match, name){
 			return getCode(self.dataset, name)
 		});
 		return message;
@@ -116,8 +116,9 @@ Emoji.prototype = {
 		message = String(message);
 		message = message.replace(self.patterns.codePattern, function(code){
 			var imgName = getImgName(self.dataset, code);
+			var itemName = getItemName(self.dataset, code);
 			return '<img title="' + imgName + '" alt="' + imgName +
-				'" src="' + _base + imgName + _ext + '" />';
+				'" src="' + _base + imgName + _ext + '" data-item-name="[' + itemName + ']" />';
 		});
 		return message;
 	}
@@ -126,6 +127,7 @@ Emoji.prototype = {
 
 function getCode(dataset, name){
 	var len = dataset.length;
+	console.log(name);
 	for(var i = 0; i < len; i++){
 		if(dataset[i].item_name === name){
 			return dataset[i].code;
@@ -139,6 +141,16 @@ function getImgName(dataset, code){
 	for(var i = 0; i < len; i++){
 		if(dataset[i].code === code){
 			return dataset[i].image_name;
+		}
+	}
+	return code;
+}
+
+function getItemName(dataset, code){
+	var len = dataset.length;
+	for(var i = 0; i < len; i++){
+		if(dataset[i].code === code){
+			return dataset[i].item_name;
 		}
 	}
 	return code;
