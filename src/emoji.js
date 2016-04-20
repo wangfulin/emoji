@@ -118,7 +118,7 @@ Emoji.prototype = {
 			var imgName = getImgName(self.dataset, code);
 			var itemName = getItemName(self.dataset, code);
 			return '<img title="' + imgName + '" alt="' + imgName +
-				'" src="' + _base + imgName + _ext + '" data-item-name="[' + itemName + ']" />';
+				'" src="' + _base + imgName + _ext + '" data-item-name="[' + itemName + ']"' + '" data-code="[' + code + ']"' + ' />';
 		});
 		return message;
 	}
