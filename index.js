@@ -1,7 +1,3 @@
-var SystemEmoji = require('./system-emoji.js');
-var ExtendEmoji = require('./extend-emoji.js');
+var Emoji = requrie('./src/emoji.js');
 
-module.exports = {
-	SystemEmoji: SystemEmoji,
-	ExtendEmoji: ExtendEmoji
-};
+module.exports = Emoji;
