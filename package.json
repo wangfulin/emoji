@@ -19,7 +19,8 @@
     "url": "https://github.com/wangfulin/emoji/issues"
   },
   "homepage": "https://github.com/wangfulin/emoji#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "bowser": "^1.0.0"
   }
 }
