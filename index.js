@@ -1,11 +1,13 @@
 var Emoji = require('./src/emoji.js');
 
-(function(window, Emoji){
-	if(typeof module !== 'undefined'){
+(function(root, Emoji){
+	if(typeof module === 'object' && typeof module === 'object'){
 		module.exports = Emoji;
-	}else if(typeof define == 'function' && typeof define.amd == 'object'){
+	}else if(typeof define === 'function' && define.amd){
 		define('Emoji', [], Emoji);
+	}else if(typeof exports === 'object'){
+		exports['Emoji'] = Emoji;
 	}else{
-		global['Emoji'] = Emoji;
+		root['Emoji'] = Emoji;
 	}
-})(window, Emoji);
+})(this, Emoji);
